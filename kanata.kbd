@@ -1,0 +1,88 @@
+;; global configuration options
+;; https://shom.dev/start/using-kanata-to-remap-any-keyboard
+;; https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs
+;;
+;; this is modified version from the example in the blog above
+;; the final mapping is : 
+;;
+;; home modifiers = asdf jkl;
+;;
+;; caps or apo + ijkl = arrows
+;; caps or apo + ty = home pgup
+;; caps or apo + gh = end pgdn
+;; 
+;; caps = ret
+;;
+;; ralt = del
+;; hold ralt = ralt
+;; lalt = backspace
+;; hold lalt = lalt 
+;;
+;; grv = esc (disabled for now)
+;; 
+;; one hard combination to type is : left alt + caps + k (to do what exactly ?)
+;; another issue with the cap layer is the order of modifier is important : mod (ctrl, alt, shift) before caps and letters for arrows
+;; another remark is, windows modifier is not really used a lot
+;; another idea would be to replicate arrows in the other side, using sedf keys
+;;
+;; know issue : 
+;; Querty fr layer is enabled by holding ralt, but it has a weird behavior of stuch ctrl key after hold end,
+;; workaround : instead of holding ralt, use ctrl+alt, aka, jl or fs 
+;;
+(defcfg
+      process-unmapped-keys yes
+      log-layer-changes no
+)
+
+;; define keys that will be modified (all keys still processed)
+(defsrc
+      ;;esc
+      ;;grv
+      caps t y i
+      a s d f g h j k l scln apo
+      lalt spc ralt 
+)
+
+;; default/base layer modifications always active
+(deflayer default
+      ;;@esc
+      ;;@grv
+      @cap _ _ _
+      @a @s @d @f _ _ @j @k @l @scln @apo
+      @lalt _ @ralt ;;del _ bspc
+      
+)
+
+;; shifted layer activated by holding CAPS lock
+(deflayer cap-mod
+      ;;_
+      ;;_
+      _      home pgup      up 
+      _ _ _ _ end pgdn left down rght _ _
+      _ bspc _ 
+)
+
+;; values used by multiple changes
+(defvar
+      tap-time 200
+      hold-time 250
+)
+
+;; remapping between physical keys and functionality
+(defalias
+      ;;esc (tap-hold-press $tap-time $hold-time grv grv)
+      ;;grv (tap-hold-press $tap-time $hold-time esc esc)
+      ;; capsword (caps-word 2000) change 2
+      cap   (tap-hold-press $tap-time $hold-time ret (layer-toggle cap-mod))
+      apo   (tap-hold-press $tap-time $hold-time apo  (layer-toggle cap-mod))
+      ralt  (tap-hold-press $tap-time $hold-time del ralt)
+      lalt  (tap-hold-press $tap-time $hold-time bspc lalt)
+      a     (tap-hold $tap-time $hold-time a lmet)
+      s     (tap-hold $tap-time $hold-time s lalt)
+      d     (tap-hold $tap-time $hold-time d lsft)
+      f     (tap-hold $tap-time $hold-time f lctl)
+      j     (tap-hold $tap-time $hold-time j rctl)
+      k     (tap-hold $tap-time $hold-time k rsft)
+      l     (tap-hold $tap-time $hold-time l ralt)
+      scln  (tap-hold $tap-time $hold-time scln lmet)
+)
