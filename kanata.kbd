@@ -32,6 +32,8 @@
 (defcfg
       process-unmapped-keys yes
       log-layer-changes no
+      ;; Windows AltGr can leave lctrl stuck (happens with qwertyfr); add a synthetic lctrl release when ralt is released
+      windows-altgr add-lctl-release
 )
 
 ;; define keys that will be modified (all keys still processed)

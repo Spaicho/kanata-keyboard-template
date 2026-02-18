@@ -1,0 +1,14 @@
+Hello, I use 2 keyboard utilities and i face some compatibility issue :
+
+- I use qwertyfr keyboard layout, to have a simpler way to type special french character like accent (check qwertyfr in workspace for full code) 
+
+- I use kanata (check folder kanata in workspace for full code) in order to remap my keystrokes, modifiers on home row etc, (check folder kanata-keyboard-template)
+
+- I use keyviz because it allow to display stroked keys as we type, nothing to do with the issue itself but it helps debugging the issue
+
+the issue is easy to reproduce. : i used kanata to remap "alt gr" key to become "DEL" key when pressed at normal duration (less than some ms) but if maintained pressed (as we typically do with any modifier like ctrl, alt ... ) it remaps back to "Alt gr". 
+the issue is that the key "Alt gr" is also used by qwertyfr as a special modifier, when kept pressed it activate accent layer like 'é'. and whenever I do while kanata is active, it does work, but keyviz shows that even after key "Alt gr" is released, key "left ctrl" is still pressed, and it keeps like that until I manually press the physical "left ctrl" to force releasing.
+
+issue does not happen when one extension or the other is not active
+
+can you go through code sources of both project and try to find clues on how to solve this issue ?
