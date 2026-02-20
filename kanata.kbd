@@ -62,7 +62,7 @@
       ;;_
       _      home pgup      up 
       _ _ _ _ end pgdn left down rght _ _
-      _ bspc _ 
+      @nav-back-fwd bspc _ 
       _
 )
 
@@ -90,4 +90,5 @@
       l     (tap-hold $tap-time $hold-time l ralt)
       scln  (tap-hold $tap-time $hold-time scln lmet)
       lsft  (tap-hold-press $tap-time $hold-time esc lsft)
+      nav-back-fwd (fork A-left A-rght (lsft rsft))
 )
