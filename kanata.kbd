@@ -41,9 +41,9 @@
       ;;esc
       ;;grv
       caps t y i
-      a s d f g h j k l scln apo
+      a s d f e g h j k l scln apo
       lalt spc ralt 
-      lsft
+      lsft tab
 )
 
 ;; default/base layer modifications always active
@@ -51,9 +51,9 @@
       ;;@esc
       ;;@grv
       @cap _ _ _
-      @a @s @d @f _ _ @j @k @l @scln @apo
+      @a @s @d @f _ _ _ @j @k @l @scln @apo
       @lalt _ @ralt ;;del _ bspc
-      @lsft
+      @lsft @tab
 )
 
 ;; shifted layer activated by holding CAPS lock
@@ -61,9 +61,19 @@
       ;;_
       ;;_
       _      home pgup      up 
-      _ _ _ _ end pgdn left down rght _ _
-      @nav-back-fwd bspc _ 
-      _
+      _ _ _ _ _ end pgdn left down rght _ _
+      @nav-back bspc _ 
+      _ _
+)
+
+;; shifted layer activated by holding TAB (left hand one-hand nav)
+(deflayer tab-mod
+      ;;_
+      ;;_
+      _ _ _ _
+      _ left down rght up _ _ _ _ _ _ _
+      @nav-fwd _ _
+      _ _
 )
 
 ;; values used by multiple changes
@@ -79,6 +89,7 @@
       ;; capsword (caps-word 2000) change 2
       cap   (tap-hold-press $tap-time $hold-time ret (layer-toggle cap-mod))
       apo   (tap-hold-press $tap-time $hold-time apo  (layer-toggle cap-mod))
+      tab   (tap-hold-press $tap-time $hold-time tab  (layer-toggle tab-mod))
       ralt  (tap-hold-press $tap-time $hold-time del ralt)
       lalt  (tap-hold-press $tap-time $hold-time bspc lalt)
       a     (tap-hold $tap-time $hold-time a lmet)
@@ -90,5 +101,6 @@
       l     (tap-hold $tap-time $hold-time l ralt)
       scln  (tap-hold $tap-time $hold-time scln lmet)
       lsft  (tap-hold-press $tap-time $hold-time esc lsft)
-      nav-back-fwd (fork A-left A-rght (lsft rsft))
+      nav-back A-left
+      nav-fwd A-rght
 )
