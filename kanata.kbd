@@ -43,6 +43,7 @@
       caps t y i
       a s d f g h j k l scln apo
       lalt spc ralt 
+      lsft
 )
 
 ;; default/base layer modifications always active
@@ -52,7 +53,7 @@
       @cap _ _ _
       @a @s @d @f _ _ @j @k @l @scln @apo
       @lalt _ @ralt ;;del _ bspc
-      
+      @lsft
 )
 
 ;; shifted layer activated by holding CAPS lock
@@ -62,6 +63,7 @@
       _      home pgup      up 
       _ _ _ _ end pgdn left down rght _ _
       _ bspc _ 
+      _
 )
 
 ;; values used by multiple changes
@@ -87,4 +89,5 @@
       k     (tap-hold $tap-time $hold-time k rsft)
       l     (tap-hold $tap-time $hold-time l ralt)
       scln  (tap-hold $tap-time $hold-time scln lmet)
+      lsft  (tap-hold-press $tap-time $hold-time esc lsft)
 )
