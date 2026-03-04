@@ -40,7 +40,7 @@
 (defsrc
       ;;esc
       ;;grv
-      caps t y i
+      caps r t y i
       a s d f e g h j k l scln apo
       lalt spc ralt 
       lsft tab
@@ -50,7 +50,7 @@
 (deflayer default
       ;;@esc
       ;;@grv
-      @cap _ _ _
+      @cap _ _ _ _
       @a @s @d @f _ _ _ @j @k @l @scln @apo
       @lalt _ @ralt ;;del _ bspc
       @lsft @tab
@@ -60,9 +60,9 @@
 (deflayer cap-mod
       ;;_
       ;;_
-      _      home pgup      up 
-      _ _ _ _ _ end pgdn left down rght _ _
-      @nav-back bspc _ 
+      _ @nav-fwd home pgup      up 
+      _ _ _ _ @nav-back end pgdn left down rght _ _
+      _ bspc _ 
       _ _
 )
 
@@ -70,9 +70,9 @@
 (deflayer tab-mod
       ;;_
       ;;_
-      _ _ _ _
+      _ _ _ _ _
       _ left down rght up _ _ _ _ _ _ _
-      @nav-fwd _ _
+      _ _ _
       _ _
 )
 
