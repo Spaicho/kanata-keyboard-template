@@ -1,0 +1,34 @@
+;; kanata-strict.kbd: "strict" training mode, tier 1
+;;
+;; Included from kanata.kbd BEFORE the `default` layer, so `strict` is the first
+;; layer: kanata starts in strict mode and returns to it after every reload.
+;;
+;; In strict mode these original keys do nothing; use the remapped ones:
+;;   Enter          -> tap Caps
+;;   Backspace      -> tap Left Alt (or hold Caps + Space)
+;;   Delete         -> tap Right Alt
+;;   Esc            -> tap Left Shift
+;;   Arrows         -> hold Caps (or ') + i / j / k / l, or hold Tab + e / s / d / f
+;;   Home / End     -> hold Caps + t / g
+;;   PgUp / PgDn    -> hold Caps + y / h
+;;
+;; Toggle strict <-> normal : hold Caps, tap Esc   (alias @mode)
+;; Tray icon                : red "S" = strict, green "N" = normal, blue arrow = nav layer held
+;; Emergency exit           : hold Left Ctrl + Space + Esc (works before any remap)
+
+(deflayermap (strict icon strict.png)
+  ;; Same remaps as the `default` layer. Keep in sync when `default` changes.
+  caps @cap  apo @apo  tab @tab  lsft @lsft  lalt @lalt  ralt @ralt
+  a @a  s @s  d @d  f @f  j @j  k @k  l @l  scln @scln
+
+  ;; Tier 1: original keys disabled
+  up XX  down XX  left XX  rght XX
+  home XX  end XX  pgup XX  pgdn XX
+  ret XX  bspc XX  del XX  esc XX
+)
+
+(defalias
+  mode (switch
+    ((base-layer strict)) (layer-switch default) break
+    ()                    (layer-switch strict)  break)
+)
